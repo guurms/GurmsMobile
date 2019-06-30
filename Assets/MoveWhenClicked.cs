@@ -2,20 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveWhenClicked : MonoBehaviour
-{
-    void Start()
-    {
-        
+public class MoveWhenClicked : MonoBehaviour {
+    void Start() {
+
     }
 
-    void Update()
-    {
-        
+    void Update() {
+
     }
 
-    private void OnMouseDown() 
-    {
+    private void OnMouseDown() {
         transform.DetachChildren();
         Destroy(gameObject);
     }
