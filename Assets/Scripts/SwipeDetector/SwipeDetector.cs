@@ -1,119 +1,125 @@
-﻿using System;
-using UnityEngine;
+﻿//using System;
+//using UnityEngine;
 
-public class SwipeDetector : MonoBehaviour
-{
-    private Vector2 fingerDownPosition;
-    private Vector2 fingerUpPosition;
+//public class SwipeDetector : MonoBehaviour
+//{
+//    private Vector2[] fingerDownPosition = new Vector2[10];
+//    private Vector2[] fingerUpPosition = new Vector2[10];
 
-    [SerializeField]
-    private bool detectSwipeOnlyAfterRelease = false;
+//    [SerializeField]
+//    private bool detectSwipeOnlyAfterRelease = false;
 
-    [SerializeField]
-    private float minDistanceForSwipe = 20f;
+//    [SerializeField]
+//    private float minDistanceForSwipe = 0f;
 
-    public static event Action<SwipeData> OnSwipe = delegate { };
+//    public static event Action<SwipeData> OnSwipe = delegate { };
 
-    private void Update()
-    {
-        foreach (Touch touch in Input.touches)
-        {
-            GameObject hitBracket = null;
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+//    private void Update()
+//    {
+//        for (int i = 0; i < Input.touchCount; i++)
+//        {
+//            Touch touch = Input.touches[i];
+    
+//            GameObject hitBracket = null;
+//            RaycastHit hit;
+//            Ray ray = Camera.main.ScreenPointToRay(touch.position);
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                if(hit.transform.CompareTag("Bracket"))
-                {
-                    hitBracket = hit.transform.gameObject;
-                }
-            }
+//            if (Physics.Raycast(ray, out hit))
+//            {
+//                if(hit.transform.CompareTag("Bracket"))
+//                {
+//                    hitBracket = hit.transform.gameObject;
+//                }
+//            }
 
 
-            if (touch.phase == TouchPhase.Began)
-            {
-                fingerUpPosition = touch.position;
-                fingerDownPosition = touch.position;
-            }
+//            //if (touch.phase == TouchPhase.Began)
+//            //{
+//            //    fingerUpPosition = touch.position;
+//            //    fingerDownPosition = touch.position;
+//            //    Debug.Log("smuuu");
+//            //}
 
-            if (!detectSwipeOnlyAfterRelease && touch.phase == TouchPhase.Moved)
-            {
-                fingerDownPosition = touch.position;
-                DetectSwipe(hitBracket);
-            }
+//            //if (!detectSwipeOnlyAfterRelease && touch.phase == TouchPhase.Moved)
+//            //{
+//            //    fingerDownPosition = touch.position;
+//            //    DetectSwipe(hitBracket);
 
-            if (touch.phase == TouchPhase.Ended)
-            {
-                fingerDownPosition = touch.position;
-                DetectSwipe(hitBracket);
-            }
-        }
-    }
+//            //}
 
-    private void DetectSwipe(GameObject hitBracket)
-    {
-        if (SwipeDistanceCheckMet())
-        {
-            if (IsHorizontalSwipe())
-            {
-                var direction = fingerDownPosition.x - fingerUpPosition.x > 0 ? SwipeDirection.Right : SwipeDirection.Left;
-                var swipeDistance = HorizontalMovementDistance();
-                SwipeData swipeData = new SwipeData()
-                {
-                    Direction = direction,
-                    StartPosition = fingerDownPosition,
-                    EndPosition = fingerUpPosition
-                };
-                //hitBracket.GetComponent<BracketBehaviour>().BracketSwiped(swipeData);
-            }
-            fingerUpPosition = fingerDownPosition;
-        }
-    }
+//            //if (touch.phase == TouchPhase.Ended)
+//            //{
+//            //    fingerDownPosition = touch.position;
+//            //    Debug.Log("smuuu");
+//            //    DetectSwipe(hitBracket);
+//            //}
+//        }
+//    }
 
-    private bool IsHorizontalSwipe()
-    {
-        return VerticalMovementDistance() < HorizontalMovementDistance();
-    }
+//    private void DetectSwipe(GameObject hitBracket)
+//    {
+//        if (SwipeDistanceCheckMet())
+//        {
+//            Debug.Log("YAAAAAS");
+//            if (IsHorizontalSwipe())
+//            {
+//                var direction = fingerDownPosition.x - fingerUpPosition.x > 0 ? SwipeDirection.Right : SwipeDirection.Left;
+//                var swipeDistance = HorizontalMovementDistance();
+//                SwipeData swipeData = new SwipeData()
+//                {
+//                    Direction = direction,
+//                    StartPosition = fingerDownPosition,
+//                    EndPosition = fingerUpPosition
+//                };
+//                hitBracket.GetComponent<BracketBehaviour>().BracketSwiped(swipeData);
+//            }
+//            fingerUpPosition = fingerDownPosition;
+//        }
+//    }
 
-    private bool SwipeDistanceCheckMet()
-    {
-        return VerticalMovementDistance() > minDistanceForSwipe || HorizontalMovementDistance() > minDistanceForSwipe;
-    }
+//    private bool IsHorizontalSwipe()
+//    {
+//        return VerticalMovementDistance() < HorizontalMovementDistance();
+//    }
 
-    private float VerticalMovementDistance()
-    {
-        return Mathf.Abs(fingerDownPosition.y - fingerUpPosition.y);
-    }
+//    private bool SwipeDistanceCheckMet()
+//    {
+//        return VerticalMovementDistance() > minDistanceForSwipe || HorizontalMovementDistance() > minDistanceForSwipe;
+//    }
 
-    private float HorizontalMovementDistance()
-    {
-        return Mathf.Abs(fingerDownPosition.x - fingerUpPosition.x);
-    }
+//    private float VerticalMovementDistance()
+//    {
+//        return Mathf.Abs(fingerDownPosition.y - fingerUpPosition.y);
+//    }
 
-    private void SendSwipe(SwipeDirection direction)
-    {
-        SwipeData swipeData = new SwipeData()
-        {
-            Direction = direction,
-            StartPosition = fingerDownPosition,
-            EndPosition = fingerUpPosition
-        };
-        OnSwipe(swipeData);
-    }
-}
+//    private float HorizontalMovementDistance()
+//    {
+//        return Mathf.Abs(fingerDownPosition.x - fingerUpPosition.x);
+//    }
 
-public struct SwipeData
-{
-    public Vector2 StartPosition;
-    public Vector2 EndPosition;
-    public SwipeDirection Direction;
-}
+//    private void SendSwipe(SwipeDirection direction)
+//    {
+//        SwipeData swipeData = new SwipeData()
+//        {
+//            Direction = direction,
+//            StartPosition = fingerDownPosition,
+//            EndPosition = fingerUpPosition
+//        };
+//        OnSwipe(swipeData);
+//    }
+//}
 
-public enum SwipeDirection
-{
-    Up,
-    Down,
-    Left,
-    Right
-}
+//public struct SwipeData
+//{
+//    public Vector2 StartPosition;
+//    public Vector2 EndPosition;
+//    public SwipeDirection Direction;
+//}
+
+//public enum SwipeDirection
+//{
+//    Up,
+//    Down,
+//    Left,
+//    Right
+//}

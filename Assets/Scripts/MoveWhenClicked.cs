@@ -11,8 +11,8 @@ public class MoveWhenClicked : MonoBehaviour {
 
     }
 
-    private void OnMouseDown() {
-        transform.DetachChildren();
-        Destroy(gameObject);
-    }
+    //private void OnMouseDown() {
+    //    transform.DetachChildren();
+    //    Destroy(gameObject);
+    //}
 }
