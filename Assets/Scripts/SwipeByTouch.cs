@@ -65,7 +65,7 @@ public class SwipeByTouch : MonoBehaviour
             Debug.Log("Swipe to the right");
             notSwiped = false;
             rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.AddForce(new Vector2(150, 0));
+            rb.AddForce(new Vector2(250, 0));
         }   
         if (distance < -minDistanceForSwipe)
         {
@@ -73,7 +73,7 @@ public class SwipeByTouch : MonoBehaviour
             Debug.Log("Swipe to the left");
             notSwiped = false;
             rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.AddForce(new Vector2(-150, 0));
+            rb.AddForce(new Vector2(-250, 0));
 
         }
     }
