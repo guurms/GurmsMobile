@@ -12,6 +12,7 @@ public abstract class GenericObjectPool<T> : MonoBehaviour where T : Component
     private void Awake() 
     {
         Instance = this;
+        AddObjects(15);
     }
 
     public T Get() 
@@ -29,8 +30,15 @@ public abstract class GenericObjectPool<T> : MonoBehaviour where T : Component
 
     private void AddObjects(int count)
     {
-        var newObject = GameObject.Instantiate(prefab);
-        newObject.gameObject.SetActive(false);
-        objects.Enqueue(newObject);
+        for(int i = 0; i < count; i++)
+        {
+            var newObject = GameObject.Instantiate(prefab);
+
+            newObject.transform.GetChild(0).name = "left " + i;
+            newObject.transform.GetChild(1).name = "right " + i;
+
+            newObject.gameObject.SetActive(false);
+            objects.Enqueue(newObject);
+        }
     }
 }
