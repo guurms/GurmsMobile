@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipeByTouch : MonoBehaviour
+public class SwipeBracket : MonoBehaviour
 {
     private Vector2 fingerDownPosition;
     private Vector2 fingerUpPosition;
