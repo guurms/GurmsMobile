@@ -174,6 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 669259470}
   - component: {fileID: 669259471}
+  - component: {fileID: 669259472}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -209,6 +210,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bracketPrefab: {fileID: 8326255341939002551, guid: fbefeba166520384eb7bec04e5b07883,
     type: 3}
+--- !u!114 &669259472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669259469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9aa937a2e660b24c9355bfa4c0ecd14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
 --- !u!1 &882200596
 GameObject:
   m_ObjectHideFlags: 0

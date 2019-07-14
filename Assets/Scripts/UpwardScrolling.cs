@@ -4,19 +4,8 @@ using UnityEngine;
 
 public class UpwardScrolling : MonoBehaviour
 {
-    [SerializeField]
-    private float scrollSpeed = 5f;
-
-    private Rigidbody2D rb;
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-
     void Update()
     {
-        transform.position += Time.deltaTime * scrollSpeed * Vector3.up;
-        //rb.MovePosition(transform.position += Time.deltaTime * scrollSpeed * Vector3.up);
+        transform.position += Time.deltaTime * GlobalSpeed.Instance.currentSpeed * Vector3.up;
     }
 }
