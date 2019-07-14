@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SwipeDemo.unity
-    guid: a763ffd19c7cb4fc5a9153405b86970d
+    path: Assets/Scenes/Hjortur.unity
+    guid: 2e5dec9ab8b4f3e478d5b6a4b0df3eb1
   m_configObjects: {}

@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 318917238}
   - component: {fileID: 318917237}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SliderPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwipeByTouch : MonoBehaviour
+public class HeavySwipeBracket : MonoBehaviour
 {
     private Vector2 fingerDownPosition;
     private Vector2 fingerUpPosition;
 
-    private bool notSwiped = true;
     private int force = 250;
+    private int drag = 20;
 
     private Rigidbody2D rb;
     private readonly float minDistanceForSwipe = 20f;
@@ -19,11 +19,12 @@ public class SwipeByTouch : MonoBehaviour
     {
         myName = name;
         rb = GetComponent<Rigidbody2D>();
+        rb.drag = drag;
     }
     void Update()
     {
 
-        for (int i = 0; i < Input.touchCount; i++) 
+        for (int i = 0; i < Input.touchCount; i++)
         {
             Touch touch = Input.touches[i];
 
@@ -33,7 +34,7 @@ public class SwipeByTouch : MonoBehaviour
             //Check if its touching the object 
             RaycastHit2D hitInformation = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
 
-            if (hitInformation.collider && hitInformation.collider.name == myName && notSwiped)
+            if (hitInformation.collider && hitInformation.collider.name == myName)
             {
                 switch (touch.phase)
                 {
@@ -54,7 +55,7 @@ public class SwipeByTouch : MonoBehaviour
                 }
             }
         }
-        
+
     }
 
     void checkForSwipe()
@@ -64,15 +65,13 @@ public class SwipeByTouch : MonoBehaviour
         {
             // Swipe to the right
             Debug.Log("Swipe to the right");
-            notSwiped = false;
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.AddForce(new Vector2(force, 0));
-        }   
+        }
         if (distance < -minDistanceForSwipe)
         {
             // Swipe to the left
             Debug.Log("Swipe to the left");
-            notSwiped = false;
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.AddForce(new Vector2(-force, 0));
 
@@ -84,7 +83,6 @@ public class SwipeByTouch : MonoBehaviour
         if (collision.transform.CompareTag("Bracket"))
         {
             rb.bodyType = RigidbodyType2D.Static;
-            notSwiped = true;
         }
     }
 }
