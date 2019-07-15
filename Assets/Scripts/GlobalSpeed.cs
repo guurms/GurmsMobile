@@ -7,12 +7,14 @@ public class GlobalSpeed : MonoBehaviour
 {
     public float currentSpeed;
 
-    private float startSpeed = 1f;
+    public float startSpeed = 1f;
     private float endSpeed = 10f;
+    private float addSpeed = 0.034f;
 
     public static GlobalSpeed Instance;
 
     private float difficultyIncreaseTimer = 0f;
+    private float topTimer = 1f;
 
     private void Awake()
     {
@@ -24,7 +26,7 @@ public class GlobalSpeed : MonoBehaviour
     {
         difficultyIncreaseTimer += Time.deltaTime;
 
-        if(difficultyIncreaseTimer > 1f && currentSpeed < endSpeed)
+        if(difficultyIncreaseTimer > topTimer && currentSpeed < endSpeed)
         {
             IncreaseDifficulty();
             difficultyIncreaseTimer = 0f;
@@ -33,6 +35,6 @@ public class GlobalSpeed : MonoBehaviour
 
     private void IncreaseDifficulty()
     {
-        currentSpeed += 0.034f;
+        currentSpeed += addSpeed;
     }
 }

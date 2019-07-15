@@ -7,18 +7,26 @@ public class BracketManager : MonoBehaviour
     private float spawnTimer;
 
     public GameObject bracketPrefab;
+    private float beginSpawnTimer = 1f;
+    private float nextSpawnTimer;
 
+    private void Start()
+    {
+        spawnTimer = 0;
+        nextSpawnTimer = beginSpawnTimer / GlobalSpeed.Instance.startSpeed * beginSpawnTimer / GlobalSpeed.Instance.currentSpeed;
+    }
     void Update()
     {
-        spawnTimer -= Time.deltaTime;
+        spawnTimer += Time.deltaTime;
+        nextSpawnTimer = beginSpawnTimer / GlobalSpeed.Instance.startSpeed * beginSpawnTimer / GlobalSpeed.Instance.currentSpeed;
 
-        if(spawnTimer < 0)
+        if (spawnTimer > nextSpawnTimer)
         {
             var bracket = SliderPool.Instance.Get();
             bracket.transform.position = new Vector3(Random.Range(-1f, 2f), -6, 0);
             bracket.gameObject.SetActive(true);
-            spawnTimer = 0.6f - ((GlobalSpeed.Instance.currentSpeed - 2f)* 0.1f);
-            spawnTimer = Mathf.Clamp(spawnTimer, 0.1f, 0.6f);
+            spawnTimer = 0;
+            //spawnTimer = Mathf.Clamp(spawnTimer, 0.1f, 0.6f);
         }
     }
 }
