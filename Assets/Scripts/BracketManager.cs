@@ -13,12 +13,12 @@ public class BracketManager : MonoBehaviour
     private void Start()
     {
         spawnTimer = 0;
-        nextSpawnTimer = beginSpawnTimer / GlobalSpeed.Instance.startSpeed * beginSpawnTimer / GlobalSpeed.Instance.currentSpeed;
+        nextSpawnTimer = (beginSpawnTimer * GlobalSpeed.Instance.startSpeed) /GlobalSpeed.Instance.currentSpeed;
     }
     void Update()
     {
         spawnTimer += Time.deltaTime;
-        nextSpawnTimer = beginSpawnTimer / GlobalSpeed.Instance.startSpeed * beginSpawnTimer / GlobalSpeed.Instance.currentSpeed;
+        nextSpawnTimer = (beginSpawnTimer * GlobalSpeed.Instance.startSpeed) / GlobalSpeed.Instance.currentSpeed;
 
         if (spawnTimer > nextSpawnTimer)
         {
