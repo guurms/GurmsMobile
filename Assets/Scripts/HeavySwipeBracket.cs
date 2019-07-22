@@ -8,7 +8,7 @@ public class HeavySwipeBracket : MonoBehaviour
     private Vector2 fingerUpPosition;
 
     private int force = 250;
-    private int drag = 20;
+    private int drag = 10;
 
     private Rigidbody2D rb;
     private readonly float minDistanceForSwipe = 20f;

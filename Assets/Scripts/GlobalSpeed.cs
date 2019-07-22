@@ -9,7 +9,7 @@ public class GlobalSpeed : MonoBehaviour
 
     public float startSpeed = 1f;
     private float endSpeed = 10f;
-    private float addSpeed = 0.034f;
+    private float addSpeed = 0.01f;
 
     public static GlobalSpeed Instance;
 

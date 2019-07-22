@@ -34,8 +34,7 @@ public abstract class GenericObjectPool<T> : MonoBehaviour where T : Component
         {
             var newObject = GameObject.Instantiate(prefab);
 
-            newObject.transform.GetChild(0).name = "left " + i;
-            newObject.transform.GetChild(1).name = "right " + i;
+            newObject.name = prefab.name + objects.Count;
 
             newObject.gameObject.SetActive(false);
             objects.Enqueue(newObject);

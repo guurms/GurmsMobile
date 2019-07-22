@@ -6,8 +6,6 @@ public class SwipeBracket : MonoBehaviour
 {
     private Vector2 fingerDownPosition;
     private Vector2 fingerUpPosition;
-
-    private bool notSwiped = true;
     private int force = 250;
 
     private Rigidbody2D rb;
@@ -33,7 +31,7 @@ public class SwipeBracket : MonoBehaviour
             //Check if its touching the object 
             RaycastHit2D hitInformation = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
 
-            if (hitInformation.collider && hitInformation.collider.name == myName && notSwiped)
+            if (hitInformation.collider && hitInformation.collider.name == myName)
             {
                 switch (touch.phase)
                 {
@@ -62,17 +60,11 @@ public class SwipeBracket : MonoBehaviour
         var distance = fingerDownPosition.x - fingerUpPosition.x;
         if (distance > minDistanceForSwipe)
         {
-            // Swipe to the right
-            Debug.Log("Swipe to the right");
-            notSwiped = false;
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.AddForce(new Vector2(force, 0));
         }   
         if (distance < -minDistanceForSwipe)
         {
-            // Swipe to the left
-            Debug.Log("Swipe to the left");
-            notSwiped = false;
             rb.bodyType = RigidbodyType2D.Dynamic;
             rb.AddForce(new Vector2(-force, 0));
 
@@ -84,7 +76,6 @@ public class SwipeBracket : MonoBehaviour
         if (collision.transform.CompareTag("Bracket"))
         {
             rb.bodyType = RigidbodyType2D.Static;
-            notSwiped = true;
         }
     }
 }

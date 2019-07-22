@@ -1,4 +1,4 @@
-﻿public class SliderPool : GenericObjectPool<Slider>
+﻿public class SwipePool : GenericObjectPool<Swipe>
 {
     //Can be empty. Just for pool name recognition.
 }
