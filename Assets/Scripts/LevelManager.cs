@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            return null;
+            return LevelFour();
         }
     }
 
