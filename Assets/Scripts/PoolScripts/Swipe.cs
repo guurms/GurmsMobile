@@ -11,6 +11,9 @@ public class Swipe : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        Debug.Log("itsa me, mario");
+        GetComponent<SwipeBracket>().Reset();
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         SwipePool.Instance.ReturnToPool(this);
     }
 }

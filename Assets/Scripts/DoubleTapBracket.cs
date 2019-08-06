@@ -6,14 +6,14 @@ public class DoubleTapBracket : MonoBehaviour
 {
     private int tapCount;
     private SpriteRenderer sr;
-    private string myName;
+    private Color baseColor;
     
     // Start is called before the first frame update
     void Start()
     {
         tapCount = 0;
-        myName = name;
         sr = GetComponent<SpriteRenderer>();
+        baseColor = sr.color;
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class DoubleTapBracket : MonoBehaviour
             //Check if its touching the object 
             RaycastHit2D hitInformation = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
 
-            if (hitInformation.collider && hitInformation.collider.name == myName)
+            if (hitInformation.collider && hitInformation.collider.name == name)
             {
                 switch (touch.phase)
                 {
@@ -50,19 +50,19 @@ public class DoubleTapBracket : MonoBehaviour
         if (tapCount == 1)
         {
             Debug.Log("Yaas one");
-            sr.color = new Color(1, 1, 1, 0.5f);
+            sr.color = new Color(baseColor.r, baseColor.g, baseColor.b, 0.5f);
         }
         if (tapCount == 2)
         {
             Debug.Log("Yaas two");
-            sr.enabled = false;
+            Reset();
+            DoublePool.Instance.ReturnToPool(GetComponent<Double>());
         }
     }
 
-    public void ResetBracket()
+    public void Reset()
     {
         tapCount = 0;
-        sr.enabled = true;
-        sr.color = new Color(1, 1, 1, 1f);
+        sr.color = baseColor;
     }
 }

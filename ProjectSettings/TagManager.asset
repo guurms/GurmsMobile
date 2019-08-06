@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Bracket
   - Music
+  - Right
+  - Left
+  - Middle
   layers:
   - Default
   - TransparentFX

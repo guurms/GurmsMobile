@@ -10,14 +10,16 @@ public class HeavySwipeBracket : MonoBehaviour
     private int force = 250;
     private int drag = 10;
 
+    private string left = "Left";
+    private string right = "Right";
+    private string center = "Middle";
+
     private Rigidbody2D rb;
     private readonly float minDistanceForSwipe = 20f;
-    private string myName;
 
     // Update is called once per frame
     private void Start()
     {
-        myName = name;
         rb = GetComponent<Rigidbody2D>();
         rb.drag = drag;
     }
@@ -34,7 +36,7 @@ public class HeavySwipeBracket : MonoBehaviour
             //Check if its touching the object 
             RaycastHit2D hitInformation = Physics2D.Raycast(touchPos, Camera.main.transform.forward);
 
-            if (hitInformation.collider && hitInformation.collider.name == myName)
+            if (hitInformation.collider && hitInformation.collider.name == name)
             {
                 switch (touch.phase)
                 {
@@ -61,20 +63,25 @@ public class HeavySwipeBracket : MonoBehaviour
     void checkForSwipe()
     {
         var distance = fingerDownPosition.x - fingerUpPosition.x;
+        //Swipe right
         if (distance > minDistanceForSwipe)
         {
-            // Swipe to the right
-            Debug.Log("Swipe to the right");
-            rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.AddForce(new Vector2(force, 0));
+            if (tag == right || tag == center)
+            {
+                Debug.Log(distance);
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                rb.AddForce(new Vector2(force, 0));
+            }
         }
+        //Swipe left
         if (distance < -minDistanceForSwipe)
         {
-            // Swipe to the left
-            Debug.Log("Swipe to the left");
-            rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.AddForce(new Vector2(-force, 0));
-
+            if (tag == left || tag == center)
+            {
+                Debug.Log(distance);
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                rb.AddForce(new Vector2(-force, 0));
+            }
         }
     }
 
@@ -84,5 +91,11 @@ public class HeavySwipeBracket : MonoBehaviour
         {
             rb.bodyType = RigidbodyType2D.Static;
         }
+    }
+
+    public void Reset()
+    {
+        fingerUpPosition = new Vector2(0f, 0f);
+        fingerDownPosition = new Vector2(0f, 0f);
     }
 }

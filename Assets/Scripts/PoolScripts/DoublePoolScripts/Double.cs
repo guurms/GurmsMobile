@@ -11,6 +11,7 @@ public class Double : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        GetComponent<DoubleTapBracket>().Reset();
         DoublePool.Instance.ReturnToPool(this);
     }
 }

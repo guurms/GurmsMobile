@@ -68,7 +68,7 @@ public class LevelManager : MonoBehaviour
         }
         if (randomNum == 3)
         {
-            return HeavyPool.Instance.Get().gameObject;
+            return DoublePool.Instance.Get().gameObject;
         }
         else
         {

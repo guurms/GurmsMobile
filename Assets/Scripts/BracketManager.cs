@@ -53,19 +53,19 @@ public class BracketManager : MonoBehaviour
         if(random == 0)
         {
             //Left gap
-            bracket.name = "left" + bracket.name;
+            bracket.tag = "Left";
             return new Vector3(Random.Range(-3.5f, -0.6f), yAxis, 0);
         }
         else if (random == 1)
         {
             //Middle gap
-            bracket.name = "middle" + bracket.name;
+            bracket.tag = "Middle";
             return new Vector3(Random.Range(-0.6f, 0.6f), yAxis, 0);
         }
         else
         {
             //Right gap
-            bracket.name = "right" + bracket.name;
+            bracket.tag = "Right";
             return new Vector3(Random.Range(0.6f, 3.5f), yAxis, 0);
         }
     }
