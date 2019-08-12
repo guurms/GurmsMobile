@@ -37,7 +37,8 @@ public class PlayerCollisionHandler : MonoBehaviour
 
     public void Death()
     {
-        Destroy(gameObject);
+        GameManager.instance.GameOver();
         Time.timeScale = 0.4f;
+        Destroy(gameObject);
     }
 }
